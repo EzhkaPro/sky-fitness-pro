@@ -77,6 +77,7 @@ export const LoginButton = styled.button`
   height: 52px;
   min-width: 278px;
   border-radius: 46px;
+  cursor: pointer;
 `
 export const Error = styled.p`
   color: red;

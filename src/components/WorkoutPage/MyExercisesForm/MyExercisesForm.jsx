@@ -1,28 +1,56 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import * as S from './MyExercisesForm.styles'
 import CountedProgress from '../progress-counted/progress-counted'
-import { useDispatch, useSelector } from 'react-redux'
-import { setProgressValues } from '../../store/slices/progressSlice'
+import { useSelector } from 'react-redux'
+
+import { getDatabase, ref, update } from 'firebase/database'
+import { idSelector } from '../../store/selectors/user'
 const FORM_STATE_IN_PROCESS = 'FORM_STATE_IN_PROCESS'
 const FORM_STATE_COMPLETE = 'FORM_STATE_COMPLETE'
 
-export const MyExercisesForm = ({ listExercises }) => {
-  const dispatch = useDispatch()
+export const MyExercisesForm = ({
+  listExercises, // workoutId.exercises - упражнения по выбранному воркауту без progress не из БД
+  myWorkout, // полностью выбранный воркаут, { exercises[{},{}], workoutId, isComplete }
+  updateCompleteCallback
+}) => {
+  const [progressValuesChange, setProgressValuesChange] = useState(new Array(listExercises.length).fill(''))
+
+  const id = useSelector(idSelector) // id пользователя
+
+  // написать функцию добавления данных в БД через метод update
+  async function incrementProgressAndUpdateDB() {    
+    let fieldValidation = true //Флаг на проверку превышения количества повторений
+    const parsedProgress = progressValuesChange.map((element)=>{
+      const newChange = parseInt(element);
+      if (newChange < 0) {
+        fieldValidation = false
+      }
+      return newChange;
+    });
+    if(!fieldValidation){
+      alert('Количество выполненных упражнений не может быть отрицательным')
+      return;
+    }
+
+    myWorkout.isComplete = true;
+    myWorkout.exercises.forEach((myExercise, index) => {
+      const delta = parsedProgress[index]
+      myExercise.progress += delta;
+      
+      if (myExercise.progress < myExercise.quantity) {
+        myWorkout.isComplete = false
+      }
+    })
+
+    const db = getDatabase();
+    const exerciseRef = ref(db, `users/${id}/workouts/${myWorkout.workoutId}`);
+    update(exerciseRef, {"exercises": myWorkout.exercises});
+    update(exerciseRef, {"isComplete": myWorkout.isComplete});
+  }
 
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [formState, setFormState] = useState(FORM_STATE_IN_PROCESS)
   const [isErrorExist, setIsErrorExist] = useState(false)
-
-  // const { progressValues } = useSelector((state) => state.progress)
-  const workoutLength = listExercises.length
-
-  const [progressValuesChange, setProgressValuesChange] = useState(
-    new Array(workoutLength).fill('')
-  )
-
-  useEffect(() => {
-    dispatch(setProgressValues(new Array(workoutLength).fill('')))
-  }, [])
 
   const openModal = () => {
     setFormState(FORM_STATE_IN_PROCESS)
@@ -41,28 +69,33 @@ export const MyExercisesForm = ({ listExercises }) => {
     } else {
       setFormState(FORM_STATE_COMPLETE)
       setIsErrorExist(false)
-      dispatch(setProgressValues(progressValuesChange))
+      
+      incrementProgressAndUpdateDB()
 
       setTimeout(() => {
-        closeModal()
+        closeModal();
+        updateCompleteCallback()
       }, 2000)
     }
   }
 
   return (
     <div>
-
       <S.Button onClick={openModal}>Заполнить свой прогресс</S.Button>
       {isModalOpen && formState === FORM_STATE_IN_PROCESS && (
         <>
-          <S.PoupLayout onClick={()=>{closeModal()}}/>
+          <S.PoupLayout
+            onClick={() => {
+              closeModal()
+            }}
+          />
           <S.Popup>
             <div className="modal-content">
               <span className="close" onClick={closeModal}>
                 &times;
               </span>
               <S.PopupTitle>Мой прогресс</S.PopupTitle>
-              {listExercises.map((exercise, index) => {
+              {myWorkout.exercises.map((exercise, index) => {
                 const exerciseText = exercise.name.split('(')
 
                 return (
@@ -93,7 +126,11 @@ export const MyExercisesForm = ({ listExercises }) => {
       )}
       {isModalOpen && formState === FORM_STATE_COMPLETE && (
         <>
-          <S.PoupLayout onClick={()=>{closeModal()}}/>
+          <S.PoupLayout
+            onClick={() => {
+              closeModal()
+            }}
+          />
           <CountedProgress
             tittle="Ваш прогресс засчитан!"
             closeModal={closeModal}

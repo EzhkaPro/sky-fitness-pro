@@ -35,6 +35,7 @@ export const HeaderButton = styled.div `
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family: "StratosSkyeng";
 
 &:hover{
     background-color: #2D1F79;

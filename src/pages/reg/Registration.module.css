@@ -60,6 +60,7 @@
   height: 52px;
   min-width: 278px;
   border-radius: 46px;
+  cursor: pointer;
 }
 
 .regButton {
@@ -71,6 +72,7 @@
   height: 52px;
   min-width: 278px;
   border-radius: 46px;
+  cursor: pointer;
 }
 
 .regLoginDiv {

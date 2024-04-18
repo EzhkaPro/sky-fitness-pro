@@ -26,7 +26,7 @@ export const PersonalData = ({ email, logOut }) => {
         value={selectedOption}
         onChange={handleSelectChange}
         style={{
-          backgroundColor: location.pathname === '/' ? '#271a58' : '#FAFAFA',
+          backgroundColor: location.pathname === '/' ? '#271a58' : 'inherit',
           color: location.pathname === '/' ? '#fff' : '#000',
         }}
       >

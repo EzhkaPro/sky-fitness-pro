@@ -33,18 +33,12 @@ const CourseDescriptionPage = ({ courses, workouts }) => {
   }
 
   const id = useSelector(idSelector)
-  console.log(id)
 
   const addCourse = () => {
     if (!id) {
       navigate('/auth')
       return
     }
-    // const loggedAddCourse = () => {
-
-    //получить id пользователя из localStorage
-    // const id = JSON.parse(localStorage.getItem('user')).id
-    // console.log(id)
 
     async function postCourseId(courseId) {
       const db = getDatabase()
@@ -58,19 +52,13 @@ const CourseDescriptionPage = ({ courses, workouts }) => {
         const workoutsRef = ref(db, 'users/' + id + '/workouts/' + workoutId)
         let workout = {
           workoutId,
-          isComplete: false,
-        }
-        if (
-          workouts.filter((workout) => workout._id === workoutId)[0].exercices
-        ) {
-          workout.exercices = workouts.filter(
-            (workout) => workout._id === workoutId
-          )[0].exercices
+          isComplete: false
+        };
+        if(workouts.filter((workout) => workout._id === workoutId)[0].exercises){
+          workout.exercises = workouts.filter((workout) => workout._id === workoutId)[0].exercises;
         }
         set(workoutsRef, workout)
       })
-
-      console.log('Course ADDED')
     }
 
     const result = window.confirm(

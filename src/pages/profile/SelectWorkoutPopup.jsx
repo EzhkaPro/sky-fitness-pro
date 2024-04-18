@@ -4,10 +4,9 @@ import * as S from './SelectWorkoutPopup.styles'
 
 export const SelectWorkoutPopup = ({ list, callbackToClose }) => {
   const navigate = useNavigate();
-  console.log(list);
 
   const openWorkout = (workoutId) =>{
-    navigate("/users/courses/" + workoutId)
+    navigate("/users/workouts/" + workoutId)
   };
 
   return (

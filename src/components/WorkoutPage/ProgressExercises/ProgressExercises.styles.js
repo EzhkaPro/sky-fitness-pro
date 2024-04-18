@@ -116,7 +116,7 @@ export const ProgressInputForExerciseFirst = styled(TrainingProgressInput)`
   &::before {
     background: #565eef;
     content: '';
-    width: ${(props) => props.value}
+    width: ${(props) => props.value};
   }
 `
 
@@ -126,4 +126,24 @@ export const TrainingProgressBox = styled.div`
   row-gap: 26px;
   padding-bottom: 32px;
   padding-top: 32px;
+`
+export const Modal = styled.div`
+  background-color: #fff; /* Цвет фона модального окна */
+  padding: 20px;
+  border-radius: 15px;
+`
+
+export const Input = styled.input`
+  font-family: StratosSkyeng;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: -0.05000000074505806px;
+  text-align: left;
+  border: none;
+  outline: none;
+  border-bottom: 1px #d0cece solid;
+  width: 100%;
+  margin-top: 10px;
+  padding: 5px;
 `

@@ -13,7 +13,6 @@ export const Courses = styled.div`
     display: flex;
     gap: 37px;
     flex-wrap: wrap;
-    padding-top:20px;
 `
 
 export const Card = styled.div `

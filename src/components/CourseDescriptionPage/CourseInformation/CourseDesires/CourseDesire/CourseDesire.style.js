@@ -17,6 +17,7 @@ export const CourseDesireCircle = styled.div`
   font-weight: 400;
   line-height: 40px;
   letter-spacing: 0em;
+  font-family: "StratosSkyeng";
   text-align: center;
   @media (max-width: 426px) {
     width: 37px;
@@ -27,4 +28,5 @@ export const CourseDesireCircle = styled.div`
 `
 export const CourseDesireText = styled.div`
   max-width: 244px;
+  font-family: "StratosSkyeng";
 `

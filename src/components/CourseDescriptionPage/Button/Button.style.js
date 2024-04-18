@@ -12,6 +12,7 @@ export const Button = styled.button`
   color: #ffffff;
   cursor: pointer;
   border: none;
+  font-family: "StratosSkyeng";
   transition: all 0.6s;
   &:hover {
     background: #3f007d;

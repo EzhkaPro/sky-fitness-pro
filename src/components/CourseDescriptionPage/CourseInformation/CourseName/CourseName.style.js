@@ -14,6 +14,7 @@ export const CourseNameContainer = styled.section`
   justify-content: flex-end;
   overflow: hidden;
   background-color: #F5F5F5;
+  font-family: "StratosSkyeng";
 }
   @media (max-width: 426px) {
     font-size: 40px;
@@ -35,6 +36,7 @@ export const CourseName = styled.div`
   position: absolute;
   top: 30px;
   left: 30px;
+  font-family: "StratosSkyeng";
   @media (max-width: 400px) {
     top: 10px;
   }

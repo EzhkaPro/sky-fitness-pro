@@ -1,29 +1,36 @@
-import { useState } from 'react'
 import * as S from './ProgressExercises.styles'
-import { useSelector } from 'react-redux'
 
-export const ProgressExercises = ({ listExercises }) => {
-  const { progressValues } = useSelector((state) => state.progress)
+export const ProgressExercises = ({ myWorkout }) => {
 
-  // const getPercentageByValue = () => {
-  //   const exerciseText = exercise?.name ? exercise?.name.split('(') : ''
+  const getPercentageByValue = (exercise) => {
+    exercise.progress = exercise.progress ?? 0
 
-  //   let valueInPercentage
+    let valueInPercentage
 
-  //   if (exercise.quantity !== 0 && !isNaN(progressValues[index])) {
-  //     valueInPercentage = Math.round(
-  //       (progressValues[index] / exercise.quantity) * 100
-  //     )
-  //   } else {
-  //     valueInPercentage = 0
-  //   }
+    let fieldValidation = true //Флаг на проверку превышения количества повторений
 
-  //   if (valueInPercentage > 100) {
-  //     valueInPercentage = 100
-  //   } else if (valueInPercentage < 0) {
-  //     valueInPercentage = 0
-  //   }
-  // }
+    if (exercise.quantity !== 0 && exercise.progress !== null) {
+      valueInPercentage = Math.round(
+        (exercise.progress / exercise.quantity) * 100
+      )
+    } else {
+      valueInPercentage = 0
+    }
+
+    if (valueInPercentage > 100) {
+      valueInPercentage = 100;
+    }
+    if (valueInPercentage < 0) {
+      alert('Количество выполненных упражнений не может быть отрицательным')
+      fieldValidation = false
+    }
+    
+    if (fieldValidation) {
+      return valueInPercentage
+    }
+  }
+
+  const listExercises = myWorkout.exercises
 
   return (
     <S.ProgressBox>
@@ -31,36 +38,17 @@ export const ProgressExercises = ({ listExercises }) => {
       <S.TrainingProgressBox>
         {listExercises &&
           listExercises.map((exercise, index) => {
+            exercise.progress = exercise.progress ?? 0
             const exerciseText = exercise?.name ? exercise?.name.split('(') : ''
-
-            let valueInPercentage
-
-            if (exercise.quantity !== 0 && !isNaN(progressValues[index])) {
-              valueInPercentage = Math.round(
-                (progressValues[index] / exercise.quantity) * 100
-              )
-            } else {
-              valueInPercentage = 0
-            }
-
-            if (valueInPercentage > 100) {
-              valueInPercentage = 100
-            } else if (valueInPercentage < 0) {
-              valueInPercentage = 0
-            }
-
+            const valueInPercentage = getPercentageByValue(exercise)
             return (
               <S.TrainingProgressInPercentage key={'progress-' + index}>
                 <S.TrainingProgressElement>
                   {exerciseText[0]}
                 </S.TrainingProgressElement>
                 <S.TrainingProgressInputBox>
-                  <S.ProgressInputForExerciseFirst
-                    value={valueInPercentage + '%'}
-                  ></S.ProgressInputForExerciseFirst>
-                  <S.TrainingProgressInputPercentage
-                    value={parseInt(valueInPercentage)}
-                  >
+                  <S.ProgressInputForExerciseFirst value={valueInPercentage + '%'} />
+                  <S.TrainingProgressInputPercentage value={parseInt(valueInPercentage)}>
                     {valueInPercentage + '%'}
                   </S.TrainingProgressInputPercentage>
                 </S.TrainingProgressInputBox>

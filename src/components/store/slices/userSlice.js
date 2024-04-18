@@ -50,7 +50,6 @@ const userSlice = createSlice({
       localStorage.setItem('token', state.token)
       localStorage.setItem('id', state.id)
       localStorage.setItem('password', state.password)
-      localStorage.setItem('progress', state.progress)
     },
     removeUser(state) {
       state.email = null
@@ -74,11 +73,6 @@ const userSlice = createSlice({
       localStorage.setItem('password', state.password)
     },
 
-    setProgress(state, action) {
-      state.progress = action.payload.progress
-      localStorage.setItem('progress', state.progress)
-    },
-
     initializeUserFromLocalStorage() {
       // Пустное действие, middleware будет обрабатывать это действие
     },
@@ -91,7 +85,6 @@ export const {
   initializeUserFromLocalStorage,
   setEmail,
   setPassword,
-  setProgress,
 } = userSlice.actions
 export default userSlice.reducer
 export const userReducer = userSlice.reducer

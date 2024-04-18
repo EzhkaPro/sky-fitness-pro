@@ -22,6 +22,7 @@ export const Footer = styled.div`
   justify-content: center;
   padding-top: 41px;
   padding-bottom: 60px;
+  font-family: "StratosSkyeng";
 `
 
 export const FooterButton = styled.div`
@@ -42,6 +43,7 @@ export const FooterButton = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  font-family: "StratosSkyeng";
 
   &:hover {
     background-color: #daf289;
@@ -67,6 +69,7 @@ export const HeaderDescription = styled.div`
     color: #FFFFFF;
     -webkit-text-stroke: 0.5px black;
     letter-spacing: 0.05px;
+    font-family: "StratosSkyeng";
 `
 
 export const HeaderTitle = styled.div `
@@ -75,6 +78,7 @@ export const HeaderTitle = styled.div `
     width: 830px;
     height: 135px;
     padding-top: 17px;
+    font-family: "StratosSkyeng";
 `
 export const ChangeBody = styled.div`
     float: right;

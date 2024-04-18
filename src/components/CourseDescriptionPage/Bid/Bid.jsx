@@ -16,7 +16,7 @@ const Bid = ({addCourse}) => {
           <Button onClick={addCourse}>Записаться на тренировку</Button>
         </div>
       </S.SignUp>
-      {/* <S.BidImg alt="Рука с телефоном" src={svgUrl} /> */}
+      <S.BidImg alt="Рука с телефоном" src='/img//phone.svg'></S.BidImg>
     </S.BidContainer>
   )
 }

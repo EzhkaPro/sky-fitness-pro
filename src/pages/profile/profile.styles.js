@@ -37,6 +37,7 @@ export const TitlePage = styled.h1`
   font-weight: 400px;
   padding-top: 56px;
   padding-bottom: 40px;
+  font-family: "StratosSkyeng";
 `
 
 export const InfoUser = styled.h1`
@@ -71,6 +72,9 @@ export const LoginButton = styled.button`
   height: 52px;
   min-width: 275px;
   border-radius: 46px;
+  font-family: "StratosSkyeng";
+  cursor: pointer;
+  cursor: pointer;
 `
 
 export const ButtonChangePass = styled.div`
@@ -78,6 +82,7 @@ export const ButtonChangePass = styled.div`
   flex-direction: column;
   align-items: flex-start;
   padding-top: 14px;
+  cursor: pointer;
 
   :hover {
     background-color: #3f007d;
@@ -94,12 +99,14 @@ export const TitleCourses = styled.div`
 
 export const TitleCoursesText = styled.h1`
   font-size: 48px;
+  font-family: "StratosSkyeng";
 `
 
 export const CoursesCards = styled.div`
 display: flex;
 padding-top: 60px;
 gap: 40px;
+cursor: pointer;
 `
 
 export const Workout = styled.img`
@@ -140,17 +147,18 @@ export const ProfCard = styled.img`
 export const ProfList = styled.div`
   padding: 0px;
   margin: 0px;
-  padding-top: 60px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 110px;
+  display: flex;
+  flex-wrap:wrap;
+  gap: 37px;
   margin-bottom: 300px;
 `
 export const Prof = styled.div`
   position: relative;
-  margin-bottom: 340px;
-
+  width: 360px;
+  height: 480px;
   color: #000;
   font-variant-numeric: lining-nums proportional-nums;
   font-family: 'StratosSkyeng', sans-serif;
@@ -159,9 +167,8 @@ export const Prof = styled.div`
   font-weight: 600;
   line-height: 110%;
   letter-spacing: -0.5px;
-  width: 290px;
-  padding-top: 30px;
-  padding-left: 30px;
+  width: 360px;
+
   z-index: 1;
   @media (max-width: 1024px) {
     font-size: 32px;
@@ -184,6 +191,7 @@ export const ProfButton = styled.button`
   height: 43px;
   left: 30px;
   top: 410px;
+  cursor: pointer;
   background: #c7e957;
   border-radius: 80px;
   font-family: 'StratosSkyeng', sans-serif;

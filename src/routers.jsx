@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { app } from './components/firebase/firebase'
 import firebase from 'firebase/compat/app'
 import 'firebase/compat/database'
-import { CourseVideoPage } from './pages/CourseVideoPage/CourseVideoPage'
+import { WorkoutPage } from './pages/WorkoutPage/WorkoutPage'
 import { MainPage } from './pages/main/MainPage'
 import { Profile } from './pages/profile/profile'
 import { Login } from './pages/login/login'
@@ -131,9 +131,9 @@ export const AppRoutes = () => {
         element={<NotFound />} />
 
       <Route
-        path="/users/courses/:courseId"
+        path="/users/workouts/:workoutId"
         element={
-          <CourseVideoPage
+          <WorkoutPage
             courses={coursesFirebase}
             workouts={workoutsFirebase}
             logOut={logOut}

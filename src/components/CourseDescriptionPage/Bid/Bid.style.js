@@ -7,6 +7,7 @@ margin-top: 46px;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  font-family: "StratosSkyeng";
   @media (max-width: 960px) {
     justify-content: center;
   }
@@ -20,6 +21,7 @@ export const SignUp = styled.div`
   margin-top: 46px;
   margin-left: 52px;
   max-width: 800px;
+  font-family: "StratosSkyeng";
   padding-bottom: 48px;
   @media (max-width: 1161px) {
     max-width: 60%;
@@ -34,6 +36,7 @@ export const SignUp = styled.div`
 `
 
 export const BidImg = styled.img`
+font-family: "StratosSkyeng";
   @media (max-width: 426px) {
     max-width: 80%;
   }
@@ -46,4 +49,5 @@ export const StyledSuccess = styled.div`
   line-height: 24px;
   margin-top: 20px;
   text-align: left;
+  font-family: "StratosSkyeng";
 `
