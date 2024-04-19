@@ -116,7 +116,8 @@ export const AppRoutes = () => {
           cources={coursesFirebase}
           logOut={logOut}
           userFirebase={currentUserFirebase}
-          workoutsFirebase={workoutsFirebase}/>
+          workoutsFirebase={workoutsFirebase}
+          password={password}/>
           }
         />
       <Route

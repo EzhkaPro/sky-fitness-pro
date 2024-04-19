@@ -11,7 +11,10 @@ import 'firebase/compat/database'
 import { idSelector } from '../../components/store/selectors/user.js'
 import { useSelector } from 'react-redux'
 
-export function Profile({ cources, logOut, workoutsFirebase }) {
+import close from './img/close.png'
+import open from './img/open.png'
+
+export function Profile({ cources, logOut, workoutsFirebase, password }) {
   const navigate = useNavigate()
   const { email } = useAuth()
   const userId = useSelector(idSelector)
@@ -24,6 +27,14 @@ export function Profile({ cources, logOut, workoutsFirebase }) {
   const [passwordShow, setPasswordShow] = useState(false)
   const [isActive, setIsActive] = useState(false)
   const [userFirebase, setUserFirebase] = useState([])
+
+  // Стейт для показа пароля
+  const [showPassword, setShowPassword] = useState(true)
+
+  // Функция для обработки клика на изображении
+  const handleImageClick = () => {
+    setShowPassword((prevShowPassword) => !prevShowPassword)
+  }
 
   // UPDATE LOG AND PASS
 
@@ -54,12 +65,10 @@ export function Profile({ cources, logOut, workoutsFirebase }) {
     if (!userId) {
       navigate('/auth')
       return
-    } 
-    else if (!userFirebase) {
+    } else if (!userFirebase) {
       console.log('not Courses')
       console.log(userFirebase)
-    } 
-    else {
+    } else {
       getUserProfile(userId)
     }
   }, [])
@@ -128,7 +137,18 @@ export function Profile({ cources, logOut, workoutsFirebase }) {
         <div>
           <S.TitlePage>Мой профиль</S.TitlePage>
           <S.InfoUser>Логин: {email}</S.InfoUser>
-          <S.InfoUser>Пароль: {} </S.InfoUser>
+
+          <S.PassContainer>
+            <S.InfoUser>
+              Пароль: {showPassword ? '••••••' : password}{' '}
+            </S.InfoUser>
+            <S.HeaderImgEye
+              src={showPassword ? close : open}
+              alt={showPassword ? 'close_password' : 'open_password'}
+              onClick={handleImageClick}
+            />
+          </S.PassContainer>
+          
         </div>
         <S.ButtonChangeLog>
           <S.LoginButton onClick={() => handleLoginClick()}>
@@ -144,7 +164,6 @@ export function Profile({ cources, logOut, workoutsFirebase }) {
           <S.TitleCoursesText>Мои курсы</S.TitleCoursesText>
         </S.TitleCourses>
         <S.CoursesCards>
-
           {coursesWithImgs.length > 0 ? (
             <S.ProfList>
               {coursesWithImgs.map((course, index) => (

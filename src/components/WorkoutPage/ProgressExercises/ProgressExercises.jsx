@@ -21,7 +21,6 @@ export const ProgressExercises = ({ myWorkout }) => {
       valueInPercentage = 100;
     }
     if (valueInPercentage < 0) {
-      alert('Количество выполненных упражнений не может быть отрицательным')
       fieldValidation = false
     }
     

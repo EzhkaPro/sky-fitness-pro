@@ -37,7 +37,7 @@ export const TitlePage = styled.h1`
   font-weight: 400px;
   padding-top: 56px;
   padding-bottom: 40px;
-  font-family: "StratosSkyeng";
+  font-family: 'StratosSkyeng';
 `
 
 export const InfoUser = styled.h1`
@@ -46,6 +46,18 @@ export const InfoUser = styled.h1`
   padding-bottom: 20px;
   font-variant-numeric: lining-nums proportional-nums;
   font-family: StratosSkyeng;
+`
+
+export const HeaderImgEye = styled.img`
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+`
+
+export const PassContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
 `
 
 export const ButtonChangeLog = styled.div`
@@ -72,7 +84,7 @@ export const LoginButton = styled.button`
   height: 52px;
   min-width: 275px;
   border-radius: 46px;
-  font-family: "StratosSkyeng";
+  font-family: 'StratosSkyeng';
   cursor: pointer;
   cursor: pointer;
 `
@@ -99,14 +111,14 @@ export const TitleCourses = styled.div`
 
 export const TitleCoursesText = styled.h1`
   font-size: 48px;
-  font-family: "StratosSkyeng";
+  font-family: 'StratosSkyeng';
 `
 
 export const CoursesCards = styled.div`
-display: flex;
-padding-top: 60px;
-gap: 40px;
-cursor: pointer;
+  display: flex;
+  padding-top: 60px;
+  gap: 40px;
+  cursor: pointer;
 `
 
 export const Workout = styled.img`
@@ -142,7 +154,6 @@ export const ProfCard = styled.img`
     height: 400px;
     width: 300px;
   }
-
 `
 export const ProfList = styled.div`
   padding: 0px;
@@ -151,7 +162,7 @@ export const ProfList = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   display: flex;
-  flex-wrap:wrap;
+  flex-wrap: wrap;
   gap: 37px;
   margin-bottom: 300px;
 `
@@ -178,13 +189,12 @@ export const Prof = styled.div`
   }
 
   :hover {
-    box-shadow: 0.4em -0.4em 40px #C7E957;
-}
+    box-shadow: 0.4em -0.4em 40px #c7e957;
+  }
 
-:active {
+  :active {
     box-shadow: 0.4em -0.4em 40px #9ccc00;
-}
-
+  }
 `
 export const ProfButton = styled.button`
   width: 136px;
